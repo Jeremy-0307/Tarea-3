@@ -1,13 +1,13 @@
-public class ListaPeliculas{
-	ListaPeliculas next;
+public class ListaCategorias{
+	ListaCategorias next;
 	Pelicula peliculas;
 	boolean usado;
 
-	public ListaPeliculas(){
+	public ListaCategorias(){
         usado=false;
         next=null;
     }
-    public ListaPeliculas(Pelicula movie){
+    public ListaCategorias(Pelicula movie){
         peliculas = movie;
         usado = true;
     }
@@ -16,10 +16,10 @@ public class ListaPeliculas{
             return "";
         else
         if (next==null){
-            return " "+ peliculas.getTitulo();
+            return " "+ peliculas.getTitle();
         }
         else {
-            return " "+peliculas.getTitulo()+next.toString();
+            return " "+peliculas.getTitle()+next.toString();
         }
     }
     public void addFirst(Pelicula movie){
@@ -27,7 +27,7 @@ public class ListaPeliculas{
             usado=true;
             peliculas = movie;
         }else{
-            next = new ListaPeliculas(movie);
+            next = new ListaCategorias(movie);
             peliculas = movie;
         }
     }
@@ -37,16 +37,15 @@ public class ListaPeliculas{
             peliculas = movie;
         }else{
             if (next==null){ 
-                next = new ListaPeliculas(movie);
+                next = new ListaCategorias(movie);
             }else{
                 next.add(movie); 
             }
         }
     }
 	public static void main(String [] args){
-		ListaPeliculas p = new ListaPeliculas();
+		ListaCategorias p = new ListaCategorias();
 
-		p.add()
 
 	}
 
