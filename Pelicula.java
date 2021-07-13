@@ -1,4 +1,4 @@
-public class Pelicula{
+class Pelicula{
 
 	String showID;
 	String tipo;
@@ -7,19 +7,21 @@ public class Pelicula{
 	String cast;
 	String pais;
 	String estreno;
+	String anyo;
 	String rating;
 	String duracion;
 	String categoria;
 	String descripcion;
 
-	public Pelicula(String id,String type,String dire,String nombre,String ca,String pO,String anyo,String rat,String dura,String cate,String descrip){
+	public Pelicula(String id,String type,String nombre,String dire,String ca,String pO,String fecha,String year,String rat,String dura,String cate,String descrip){
 	    showID = id;
 	    tipo = type;
-	    director = dire;
 	    title = nombre;
+	    director = dire;
 	    cast = ca;
 	    pais = pO;
-	    estreno = anyo;
+	    estreno = fecha;
+        anyo = year;
 	    rating = rat;
 	    duracion = dura;
 	    categoria = cate;
@@ -35,7 +37,7 @@ public class Pelicula{
 		return director;
 	}	
 	public  String getTitle(){
-		return title;	|
+		return title;	
 	}
 	public  String getCast(){
 		return cast;
@@ -57,6 +59,9 @@ public class Pelicula{
 	}
 	public  String getDescripcion(){
 		return descripcion;
+	}
+	public  String getAnyo(){
+		return anyo;
 	}
 
 	public static void main(String [] args){
