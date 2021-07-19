@@ -1,33 +1,37 @@
-public class ArbolPelicuals{
+public class ArbolPeliculas{
 
-	ArbolPelicuals izq;
-	String pelicula;
-    ArbolPelicuals der;
-	public ArbolPelicuals(String v){
+	ArbolPeliculas izq;
+	Pelicula pelicula;
+    ArbolPeliculas der;
+    
+	public ArbolPeliculas(Pelicula v){
 		pelicula = v;
 	}
-	public ArbolPelicuals(){
+	public ArbolPeliculas(){
 	}
-	public int valor(String nuevaPelicula,int cero){
+	public int valor(Pelicula nuevaPelicula,int cero){
+		String peliculaNombre = nuevaPelicula.getTitle();
 		try{
-			char [] separada = nuevaPelicula.toUpperCase().toCharArray();
+			char [] separada = peliculaNombre.toUpperCase().toCharArray();
  		    return (int)separada[cero];
 		}
 		catch(NullPointerException e){
 			return 0;
 		}
 	} 
-	public void add(String nuevaPelicula,int cero){
+	public void add(Pelicula nuevaPelicula,int cero){
+		String peliculaNombre = nuevaPelicula.getTitle();
+
 		int valor1 = valor(nuevaPelicula,cero);
 		int valor2 = valor(pelicula,cero);
 
-		if(nuevaPelicula.equalsIgnoreCase(pelicula)){
+		if(peliculaNombre.equalsIgnoreCase(pelicula.getTitle())){
 			//hacer nada
 		}
 		else{
 			if(valor1>=valor2){
 				if(der == null){
-				    der = new ArbolPelicuals(nuevaPelicula);
+				    der = new ArbolPeliculas(nuevaPelicula);
 			    }
 			    if(der!=null && valor2 == valor1){
                     der.add(nuevaPelicula,cero++);
@@ -38,7 +42,7 @@ public class ArbolPelicuals{
 			}
 			if(valor1<valor2){
 				if(izq == null){
-				    izq = new ArbolPelicuals(nuevaPelicula);
+				    izq = new ArbolPeliculas(nuevaPelicula);
 			    }
 			    else{
 				    izq.add(nuevaPelicula,cero);
