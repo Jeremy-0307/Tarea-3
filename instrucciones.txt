@@ -1,4 +1,4 @@
-instrucciones:
+ instrucciones:
 
 Se tiene un archivo sobre películas de una plataforma de streaming
 netflix que están asociadas con categorías y que poseen una audiencia                                  

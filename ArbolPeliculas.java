@@ -6,6 +6,8 @@ public class ArbolPeliculas{
     
 	public ArbolPeliculas(Pelicula v){
 		pelicula = v;
+		izq = null;
+		der = null;
 	}
 	public ArbolPeliculas(){
 	}

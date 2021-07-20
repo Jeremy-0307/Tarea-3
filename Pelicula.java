@@ -10,7 +10,7 @@ class Pelicula{
 	String anyo;
 	String rating;
 	String duracion;
-	String categoria;
+	String categorias;
 	String descripcion;
 
 	public Pelicula(String id,String type,String nombre,String dire,String ca,String pO,String fecha,String year,String rat,String dura,String cate,String descrip){
@@ -24,7 +24,7 @@ class Pelicula{
         anyo = year;
 	    rating = rat;
 	    duracion = dura;
-	    categoria = cate;
+	    categorias = cate;
 	    descripcion = descrip;
 	}
 	public  String getshowID(){
@@ -54,8 +54,8 @@ class Pelicula{
 	public  String getDuracion(){
 		return duracion;
 	}
-	public  String getCategoria(){
-		return categoria;
+	public  String getCategorias(){
+		return categorias;
 	}
 	public  String getDescripcion(){
 		return descripcion;
