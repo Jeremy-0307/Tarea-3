@@ -8,15 +8,17 @@ public class Lista{
     public Lista(){
         usado = false;
         next = null;
-        hijas = null;
+        hijas = new ArbolPeliculas();
 	}
 	public Lista(String n){
 		nombre = n;
         next = null;
         usado = true;
+        hijas = new ArbolPeliculas();
 	}
     public Lista(Pelicula movie){
         nombre = movie.getTitle();
+        hijas = new ArbolPeliculas();
         hijas.add(movie,0);
         next = null;
         usado = true;
@@ -25,11 +27,13 @@ public class Lista{
         nombre = n;
         next = d;
         usado = true;
+        hijas = new ArbolPeliculas();
+
     }
-	public int valor(String nombre,int cero){
+	public int valor(String nombre,int indice){
 		try{
 			char [] separada = nombre.toUpperCase().toCharArray();
- 		    return (int)separada[cero];
+ 		    return (int)separada[indice];
 		}
 		catch(ArrayIndexOutOfBoundsException e){
 			return 100;
@@ -38,16 +42,20 @@ public class Lista{
 	public void addFirst(Pelicula movie){
         if (usado == false){  
             nombre = movie.getTitle();
+            hijas.add(movie,0);
             usado = true;
         }
         else{
             next = new Lista (movie);
-            next.hijas.add(movie,0)
+            next.hijas.add(movie,0);
         }
     }
-    public void add(Pelicula movie){
+    public void add(String name,Pelicula movie){
         if(!usado){  
             addFirst(movie);
+        }
+        if(nombre.equalsIgnoreCase(name)){
+            hijas.add(movie,0);
         }
         else{
             if(next == null){ 
@@ -55,7 +63,7 @@ public class Lista{
                 next.hijas.add(movie,0);
             }
             else{
-                next.add(movie); 
+                next.add(name, movie); 
             }
         }
     }
@@ -82,7 +90,7 @@ public class Lista{
             return next.buscar(name);
         }
     }
-    public void ordenar(Lista enRevision,int cero){
+    public void ordenar(Lista enRevision,int indice){
     	if(usado == false){
     		//hacer nada
     	}
@@ -93,10 +101,10 @@ public class Lista{
                 }
             }
             else{
-                int valor1 = valor(enRevision.nombre,cero);
-                int valor2 = valor(nombre,cero);
+                int valor1 = valor(enRevision.nombre,indice);
+                int valor2 = valor(nombre,indice);
                 if(valor1==valor2){
-                    ordenar(enRevision,cero+1);
+                    ordenar(enRevision,indice+1);
                 }   
                 else if(valor1>valor2){
                     String temporal = enRevision.nombre;

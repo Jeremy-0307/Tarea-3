@@ -8,13 +8,16 @@ public class Archivo{
         Pelicula movie = new Pelicula(separada[0],separada[1],separada[2],separada[3],separada[4],separada[5],separada[6],separada[7],separada[8],separada[9],separada[10],separada[11]);
         return movie;
     }
-    public Pelicula read(){
+    public void read(){
          try{
             File myObj = new File("netflix.txt");
             Scanner pelicula = new Scanner(myObj);
             while(pelicula.hasNextLine()){
+
                 String data = pelicula.nextLine();
-                System.out.println();
+                Pelicula movie = crearMovie(data);
+                System.out.println(data);
+                System.out.print("\n\n\n");
             }
             pelicula.close();
         }
@@ -26,6 +29,6 @@ public class Archivo{
 
     public static void main(String[] args){
         Archivo a = new Archivo();
-        a.f();
+        a.read();
     }
 }

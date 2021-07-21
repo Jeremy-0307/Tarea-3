@@ -8,76 +8,76 @@ public class ListaABC{
     public ListaABC(){
         usado = false;
         next = null;
-        hijas = null;
+        hijas = new Lista();
 	}
 	public ListaABC(String n){
 		letra = n;
         next = null;
         usado = true;
+        hijas = new Lista();
 	}
-    public ListaABC(String n, ListaABC d){
-        letra = n;
-        next = d;
-        usado = true;
-    }
     public void addFirst(Pelicula movie){
         if (usado == false){  
             letra = getLetra(movie.getTitle());
             usado = true;
         }
         else{
-            next = new ListaABC (letra);
-            letra = getLetra(movie.getTitle());
+            next = new ListaABC (movie.getTitle());
         }
     }
-    public int valor(String abc){
+    public int getValor(String abc){
         char [] separada = abc.toUpperCase().toCharArray();
-        return (int)separada[0];
+        int resultado = (int)separada[0];
+        if(separada[0]>='M'){
+            resultado = resultado+1;
+        }
+        return resultado;
     } 
     public String getLetra(String abc){
-        String [] separada = abc.toUpperCase().split("");
-        return separada[0];
+        //String [] separada = abc.toUpperCase().split("");
+        String separada = ""+abc.charAt(0);
+        return separada;
     } 
     public void addCategoria(Pelicula movie){
         String [] separada = (movie.getCategorias().split(","));
         for(int c = 0; c < separada.length; c++){
-            hijas.add(separada[c]);
+            add(separada[c].trim(),movie);
         }
     }
     public void addActores(Pelicula movie){
         String [] separada = (movie.getCast().split(","));
         for(int c = 0; c < separada.length; c++){
-            add(separada[c],movie);
+            add(separada[c].trim(),movie);
         }
     }
-    public void add(String palabra,Pelicula movie){
+    public void add(String name,Pelicula movie){
         if(!usado){  
             addFirst(movie);
         }
-        if(getLetra(movie.getTitle()).equalsIgnoreCase(letra)){
-            hijas.add(movie);
+        if(getLetra(name).equalsIgnoreCase(letra)){
+            if(hijas==null){
+                hijas = new Lista(movie);
+            }
+            else{
+                hijas.add(name,movie);
+            }
         }
         else{
             if(next == null){ 
-                next = new ListaABC(getLetra(movie.getTitle()));
-                next.hijas.add(movie);
+                next = new ListaABC(getLetra(name));
+                next.hijas.add(name,movie);
             }
             else{
-                next.add(movie); 
+                next.add(name,movie); 
             }
         }
     }
-    public void imprimir(){
-        System.out.println(letra);
-        if(next!=null){
-            next.imprimir();
+    public void buscar(String name){
+        if(getLetra(name).equalsIgnoreCase(letra)){
+           // hijas.buscar();
         }
+
     }
-
     public static void main(String [] args){
-        ListaABC wow = new ListaABC();
-        wow.imprimir();
-
-
     }
 }

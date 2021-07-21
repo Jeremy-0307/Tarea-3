@@ -30,10 +30,10 @@ class Pelicula{
 	public  String getshowID(){
 		return showID;
 	}
-	public  String gettipo(){
+	public  String getTipo(){
 		return tipo;
 	}
-	public  String getdirector(){
+	public  String getDirector(){
 		return director;
 	}	
 	public  String getTitle(){
@@ -62,6 +62,11 @@ class Pelicula{
 	}
 	public  String getAnyo(){
 		return anyo;
+	}
+	public String getInformacion(){
+		String resultado = getshowID()+"\n"+getTipo()+"\nDirector@: "+getDirector()+ " - titulo: "+getTitle()+ " - duracion: "+getDuracion()+"\nReparto: "+getCast()+
+        "categorias"+getCategorias()+"\nPais: "+getPais() +" - estrenada en: "+getEstreno() +" - Rating: "+getRating()+" - anyo: "+getAnyo()+"\nSipnosis: "+getDescripcion();
+        return resultado;
 	}
 
 	public static void main(String [] args){
