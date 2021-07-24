@@ -12,12 +12,22 @@ public class ArbolPeliculas{
 		nombre = pelicula.getTitle();
 	}
 	public ArbolPeliculas(){
-		nombre = "M";
+		nombre = "Movies:\n";
 		pelicula = null;
 		izq = null;
 		der = null;
-
 	}
+	 public String print(){
+        String r="";
+        if (der!=null){
+            r+=der.print();
+        }
+        r+=nombre+"\n";
+        if (izq!=null){
+            r+=izq.print();
+        }
+        return r;
+    }
 	public int getValor(String palabra,int indice){
 		try{
 			char [] separada = palabra.toUpperCase().toCharArray();
@@ -60,6 +70,18 @@ public class ArbolPeliculas{
 			    }
 			}
 		}
+	}
+	public void addCategoria(String newCategory,ListaABC category){
+        if(der!=null){
+        	der.pelicula.agregarCategoria(newCategory);
+            category.addCategoria(der.pelicula);
+            der.print();
+        }
+        if(izq!=null){
+            izq.pelicula.agregarCategoria(newCategory);
+            category.addCategoria(izq.pelicula);
+            izq.print();
+        }
 	}
 	public Pelicula buscar(String movie,int indice){
 		int valor1 = getValor(movie,indice);

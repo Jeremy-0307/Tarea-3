@@ -16,8 +16,8 @@ public class Lista{
         usado = true;
         hijas = new ArbolPeliculas();
 	}
-    public Lista(Pelicula movie){
-        nombre = movie.getTitle();
+    public Lista(String name ,Pelicula movie){
+        nombre = name;
         hijas = new ArbolPeliculas();
         hijas.add(movie,0);
         next = null;
@@ -39,28 +39,38 @@ public class Lista{
 			return 100;
 		}
 	} 
-	public void addFirst(Pelicula movie){
+    public String imprenta(){
+        if (!usado)
+            return "";
+        else
+        if (next==null){
+            return " "+nombre+" | ";
+        }
+        else {
+            return " "+nombre+" | "+next.imprenta();
+        }
+    }
+	public void addFirst(String name,Pelicula movie){
         if (usado == false){  
-            nombre = movie.getTitle();
+            nombre = name;
             hijas.add(movie,0);
             usado = true;
         }
         else{
-            next = new Lista (movie);
+            next = new Lista (name,movie);
             next.hijas.add(movie,0);
         }
     }
     public void add(String name,Pelicula movie){
         if(!usado){  
-            addFirst(movie);
+            addFirst(name,movie);
         }
-        if(nombre.equalsIgnoreCase(name)){
+        else if(nombre.equalsIgnoreCase(name)){
             hijas.add(movie,0);
         }
         else{
             if(next == null){ 
-                next = new Lista(movie);
-                next.hijas.add(movie,0);
+                next = new Lista(name,movie);
             }
             else{
                 next.add(name, movie); 
@@ -81,14 +91,20 @@ public class Lista{
             return contador;
         }
     }
-    public Lista buscar(String name){
+    public ArbolPeliculas buscarH(String name){
         if(nombre.equalsIgnoreCase(name)){
-            Lista temporal = new Lista(name,next);
-            return temporal;
+            return hijas;
+
         }
         else{
-            return next.buscar(name);
+            if(next==null){
+                return null;
+            }
+            else{
+                return next.buscarH(name);
+            }
         }
+        
     }
     public void ordenar(Lista enRevision,int indice){
     	if(usado == false){
@@ -123,19 +139,6 @@ public class Lista{
         }
         if(next!=null){
             next.ordenar(cate);
-        }
-    }
-    public void imprimir(){
-        if(!usado){
-
-        }
-        else{
-            System.out.println(nombre);
-            Lista temporal = next;
-            while(temporal!=null){
-                System.out.println(temporal.nombre);
-                temporal = temporal.next;
-            }
         }
     }
 	public static void main(String [] args){

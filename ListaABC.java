@@ -16,9 +16,15 @@ public class ListaABC{
         usado = true;
         hijas = new Lista();
 	}
-    public void addFirst(Pelicula movie){
+    public ListaABC(String n,Pelicula movie){
+        letra = n;
+        next = null;
+        usado = true;
+        hijas = new Lista();
+    }
+    public void addFirst(String name,Pelicula movie){
         if (usado == false){  
-            letra = getLetra(movie.getTitle());
+            letra = getLetra(name);
             usado = true;
         }
         else{
@@ -34,15 +40,18 @@ public class ListaABC{
         return resultado;
     } 
     public String getLetra(String abc){
-        //String [] separada = abc.toUpperCase().split("");
-        String separada = ""+abc.charAt(0);
-        return separada;
+        String [] separada = abc.toUpperCase().split("");
+        return separada[0];
     } 
     public void addCategoria(Pelicula movie){
         String [] separada = (movie.getCategorias().split(","));
         for(int c = 0; c < separada.length; c++){
             add(separada[c].trim(),movie);
         }
+    }
+    public void addPais(Pelicula movie){
+        add(movie.getPais().trim(),movie);
+        
     }
     public void addActores(Pelicula movie){
         String [] separada = (movie.getCast().split(","));
@@ -52,15 +61,10 @@ public class ListaABC{
     }
     public void add(String name,Pelicula movie){
         if(!usado){  
-            addFirst(movie);
+            addFirst(name,movie);
         }
-        if(getLetra(name).equalsIgnoreCase(letra)){
-            if(hijas==null){
-                hijas = new Lista(movie);
-            }
-            else{
+        else if(getLetra(name).equalsIgnoreCase(letra)){
                 hijas.add(name,movie);
-            }
         }
         else{
             if(next == null){ 
@@ -71,12 +75,30 @@ public class ListaABC{
                 next.add(name,movie); 
             }
         }
-    }
-    public void buscar(String name){
-        if(getLetra(name).equalsIgnoreCase(letra)){
-           // hijas.buscar();
-        }
 
+    }
+    public ArbolPeliculas buscar(String name){
+        if(getLetra(name).equalsIgnoreCase(letra)){
+            return hijas.buscarH(name);
+        }
+        else{
+            if(next!=null){
+                return next.buscar(name);
+            }
+            return null;
+        }
+    }
+    public void impresion(){
+        if(!usado){
+
+        }
+        else{
+            System.out.println(letra+": "+ hijas.imprenta());
+            if(next!=null){
+                next.impresion();
+            }
+
+        }
     }
     public static void main(String [] args){
     }

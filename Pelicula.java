@@ -57,6 +57,9 @@ class Pelicula{
 	public  String getCategorias(){
 		return categorias;
 	}
+	public  void agregarCategoria(String newCategory){
+		categorias = newCategory+", "+categorias;
+	}
 	public  String getDescripcion(){
 		return descripcion;
 	}
@@ -65,7 +68,7 @@ class Pelicula{
 	}
 	public String getInformacion(){
 		String resultado = getshowID()+"\n"+getTipo()+"\nDirector@: "+getDirector()+ " - titulo: "+getTitle()+ " - duracion: "+getDuracion()+"\nReparto: "+getCast()+
-        "categorias"+getCategorias()+"\nPais: "+getPais() +" - estrenada en: "+getEstreno() +" - Rating: "+getRating()+" - anyo: "+getAnyo()+"\nSipnosis: "+getDescripcion();
+        "\nCategorias: "+getCategorias()+"\nPais: "+getPais() +" - estrenada en: "+getEstreno() +" - Rating: "+getRating()+" - anyo: "+getAnyo()+"\nSipnosis: "+getDescripcion();
         return resultado;
 	}
 
