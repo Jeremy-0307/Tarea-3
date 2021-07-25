@@ -58,7 +58,7 @@ class Pelicula{
 		return categorias;
 	}
 	public  void agregarCategoria(String newCategory){
-		categorias = newCategory+", "+categorias;
+		categorias = categorias+", "+newCategory;
 	}
 	public  String getDescripcion(){
 		return descripcion;
